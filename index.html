@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="chat.js"></script>
+</head>
+<body>
+
+    <h2>Vault Chat</h2>
+    <div id="gender-selection">
+        <label for="gender">Select Your Gender:</label>
+        <select id="gender" onchange="changeBackground()">
+            <option value="">Select...</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    
+    
+
+    <div id="user-info">
+        <input type="text" id="name" placeholder="Enter your name">
+        <button onclick="registerUser()">Proceed</button>
+    </div>
+
+    <div id="chat-section" style="display: none;">
+        <h3>Welcome, <span id="username"></span></h3>
+        <p>Your unique code: <span id="uniqueCode"></span></p>
+
+        <input type="text" id="inviteCode" placeholder="Enter code to connect">
+        <button onclick="connectWithCode()">Connect</button>
+
+        <div id="chat-box"></div>
+
+        <input type="text" id="message" placeholder="Type a message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        let userName = "";
+        let uniqueCode = Math.random().toString(36).substr(2, 6); // Generate unique code
+
+        function registerUser() {
+            userName = document.getElementById("name").value;
+            if (userName.trim() === "") {
+                alert("Enter a valid name");
+                return;
+            }
+            document.getElementById("user-info").style.display = "none";
+            document.getElementById("chat-section").style.display = "block";
+            document.getElementById("username").innerText = userName;
+            document.getElementById("uniqueCode").innerText = uniqueCode;
+        }
+
+        function connectWithCode() {
+            let code = document.getElementById("inviteCode").value;
+            if (code.trim() === "") {
+                alert("Enter a valid code");
+                return;
+            }
+            alert("Connected with: " + code);
+        }
+
+        function sendMessage() {
+            let messageBox = document.getElementById("chat-box");
+            let message = document.getElementById("message").value;
+            if (message.trim() === "") return;
+
+            let msgElement = document.createElement("div");
+            msgElement.classList.add("message");
+            msgElement.innerHTML = `<strong class="user-name">${userName}:</strong> ${message}`;
+            messageBox.appendChild(msgElement);
+
+            document.getElementById("message").value = "";
+
+            // Auto-delete messages with shatter effect
+            setTimeout(() => {
+                msgElement.classList.add("shatter");
+                setTimeout(() => {
+                    msgElement.remove();
+                }, 600);
+            }, 10000);
+        }
+
+        // Add Enter key functionality
+        document.getElementById("name").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") registerUser();
+        });
+
+        document.getElementById("inviteCode").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") connectWithCode();
+        });
+
+        document.getElementById("message").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") sendMessage();
+        });
+    </script>
+
+</body>
+</html>

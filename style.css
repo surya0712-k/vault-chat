@@ -1,0 +1,183 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+/* === GENERAL STYLES === */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('whatsapp-dark-bg.jpg') repeat; /* WhatsApp dark mode style */
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* === HEADER & LOGO === */
+h2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #25D366;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px; /* Reduced space below header */
+}
+
+/* === USER REGISTRATION === */
+#user-info {
+    background: rgba(30, 30, 30, 0.9);
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#name, #gender {
+    width: 70%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    outline: none;
+    transition: 0.3s;
+}
+
+#name:focus, #gender:focus {
+    border-bottom: 2px solid #25D366;
+}
+
+/* === CHAT BOX === */
+#chat-section {
+    display: none;
+    padding: 10px;
+}
+
+#welcome-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px; /* Adjusted spacing */
+}
+
+#chat-box {
+    width: 60%;
+    max-width: 600px;
+    margin: 10px auto; /* Moved up */
+    background: rgba(30, 30, 30, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0px 0px 15px rgba(0, 255, 150, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* === MESSAGE INPUT & BUTTONS === */
+input, button {
+    width: 70%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+#message-input {
+    position: fixed;
+    bottom: 20px; /* Ensures input is above taskbar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-bottom: 2px solid transparent;
+    padding: 12px;
+}
+
+#message-input:focus {
+    border-bottom: 2px solid #25D366;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+button {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #66BB6A, #388E3C);
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.7);
+}
+
+/* === CHAT MESSAGES === */
+.message {
+    text-align: left;
+    padding: 10px;
+    margin: 3px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 10px;
+    position: relative;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Alternating message alignment */
+.message:nth-child(even) {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+}
+
+.message:nth-child(odd) {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #2E7D32, #1B5E20);
+}
+
+/* === READ RECEIPTS === */
+.read-receipt {
+    font-size: 12px;
+    color: #25D366;
+    margin-left: 5px;
+}
+
+/* === GENDER-BASED FLASH EFFECT === */
+@keyframes flashBlue {
+    0% { background-color: #001f3f; }
+    100% { background-color: #111; }
+}
+
+@keyframes flashPink {
+    0% { background-color: #FF1493; }
+    100% { background-color: #111; }
+}
+
+@keyframes flashRainbow {
+    0% { background: red; }
+    20% { background: orange; }
+    40% { background: yellow; }
+    60% { background: green; }
+    80% { background: blue; }
+    100% { background: purple; }
+}
+
+.flash-male {
+    animation: flashBlue 1s ease-in-out;
+}
+
+.flash-female {
+    animation: flashPink 1s ease-in-out;
+}
+
+.flash-other {
+    animation: flashRainbow 1s ease-in-out;
+}
